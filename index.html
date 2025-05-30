@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Evaluasi</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+    .container {
+  background: none;
+  box-shadow: none;
+}
+    h2 {
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+    }
+    label {
+      font-weight: 500;
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-size: 0.875rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid #ccc;
+      font-size: 0.875rem;
+      box-sizing: border-box;
+    }
+    button {
+      background: #ffaa2c;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+    .thankyou {
+      text-align: center;
+      margin-top: 1rem;
+      display: none;
+      font-style: italic;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Berlatihlah dengan mengerjakan soal-soal berikut! 🔥</h2>
+    <form id="myForm">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" name="nama" required />
+
+      <label for="presensi">Nomor Presensi</label>
+      <input type="text" id="presensi" name="presensi" required />
+
+      <label for="kelas">Kelas</label>
+      <input type="text" id="kelas" name="kelas" required />
+
+      <label for="jawaban1">1. Apa saja informasi penting dari teks tersebut? Berikan kesimpulannya!</label>
+      <textarea id="jawaban1" name="jawaban1" rows="4" required></textarea>
+
+      <label for="jawaban2">2. Apa pesan yang dapat diambil dari teks tersebut?</label>
+      <textarea id="jawaban2" name="jawaban2" rows="4" required></textarea>
+
+      <label for="jawaban3">3. Apa yang dapat diteladani dari Pramodya Ananta Toer dan mengapa itu penting untuk dipelajari oleh generasi sekarang?</label>
+      <textarea id="jawaban3" name="jawaban3" rows="5" required></textarea>
+
+      <button type="submit">Kirim Jawaban 🚀</button>
+      <div class="thankyou">Terima kasih sudah mengerjakan ya! 🌟</div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("myForm");
+    const thankyou = document.querySelector(".thankyou");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      const data = new FormData(form);
+     fetch("https://script.google.com/macros/s/AKfycbx6rwAzsq9q1sssTixu6rneaUeA-RXTHyyThE_chY2nvQOPY2acA2-2uPwIlPh4FMQf/exec", {
+  method: "POST",
+  body: data
+}).then(res => {
+  if(res.ok){
+    window.location.href = "thanks.html"; // redirect ke halaman lain
+  } else {
+    alert("Gagal mengirim. Coba lagi ya!");
+  }
+}).catch(() => alert("Terjadi kesalahan. Periksa koneksi."));
+    });
+  </script>
+</body>
+</html>
